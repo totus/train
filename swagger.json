@@ -1,0 +1,93 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "version" : "0.0.1",
+    "title" : "Fitness Coaching Marketplace",
+    "description" : ""
+  },
+  "paths" : {
+    "/library/exercise/{tags}" : {
+      "get" : {
+        "tags" : [ "lookup" ],
+        "summary" : "Finds exercise by custom tag",
+        "operationId" : "findExercisesByTags",
+        "parameters" : [ {
+          "name" : "tags",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Exercise"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid tag value"
+          }
+        },
+        "security" : [ {
+          "library_auth" : [ "write:exercise", "read:exercise" ]
+        } ]
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "User" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Exercise" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "steps" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/BasicAction"
+            }
+          }
+        }
+      },
+      "BasicAction" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  },
+  "servers" : [ {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/totus/ufit/0.0.1"
+  } ]
+}
