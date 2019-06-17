@@ -1,1 +1,178 @@
 
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Fitness Coaching Marketplace",
+    "version" : "0.0.1"
+  },
+  "servers" : [ {
+    "url" : "https://virtserver.swaggerhub.com/totus/ufit/0.0.1",
+    "description" : "SwaggerHub API Auto Mocking"
+  } ],
+  "paths" : {
+    "/library/exercise/{tags}" : {
+      "get" : {
+        "tags" : [ "lookup" ],
+        "summary" : "Finds exercise by custom tag",
+        "operationId" : "findExercisesByTags",
+        "parameters" : [ {
+          "name" : "tags",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ActionSet"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid tag value"
+          }
+        },
+        "security" : [ {
+          "library_auth" : [ "write:action_set", "read:action_set" ]
+        } ]
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "ActionResultType" : {
+        "type" : "string",
+        "enum" : [ "success", "failure", "not_attempted" ]
+      },
+      "Gender" : {
+        "type" : "string",
+        "enum" : [ "male", "female", "other" ]
+      },
+      "Age" : {
+        "maximum" : 200,
+        "minimum" : 0,
+        "type" : "integer"
+      },
+      "User" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Exercise" : {
+        "type" : "object",
+        "properties" : {
+          "actions" : {
+            "$ref" : "#/components/schemas/ActionSet"
+          },
+          "goals" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ProgressItem"
+            }
+          }
+        }
+      },
+      "ActionSet" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "steps" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Action"
+            }
+          }
+        }
+      },
+      "Action" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ActionResult" : {
+        "type" : "object",
+        "properties" : {
+          "result" : {
+            "$ref" : "#/components/schemas/ActionResultType"
+          },
+          "progress" : {
+            "minItems" : 1,
+            "uniqueItems" : true,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ProgressItem"
+            }
+          }
+        }
+      },
+      "State" : {
+        "type" : "object",
+        "properties" : {
+          "quality" : {
+            "type" : "string",
+            "nullable" : false
+          },
+          "quantity" : {
+            "type" : "integer",
+            "nullable" : true
+          }
+        }
+      },
+      "ProgressItem" : {
+        "type" : "object",
+        "properties" : {
+          "delta" : {
+            "type" : "number"
+          },
+          "measurement" : {
+            "$ref" : "#/components/schemas/KPI"
+          }
+        }
+      },
+      "KPI" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "meaning" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }
+}
