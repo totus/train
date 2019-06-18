@@ -1,18 +1,24 @@
 ## Project Purpose: Personal trainer assistance to manage clients' programs and schedules
 # Target Audience: professional personal trainers in gyms, doing f2f and online trainings
 
+# State of affairs:
+1. Communication. Mostly messengers. As a result - swarming chatrooms, contacts and total mess with dialogs in case, if consultancy services involves not only the sports topics, but lifestyle ones, like scientific approach to sports dietology, relaxing and focal practices or spontaneous sport acquaintances. Current solution: sports-specific multiuser software, mostly trackers with ability to share the results and added media and communicate with other athletes. Pros: it works. Cons: very sports specific, mostly focused not on communication with trainer, but on sharing the personal results. As a trainer-trainee case can cause constantly multiplying use of various sports tracking software (which causes ineffective resource management, i.e. battery draining)
+2. Content. Involves: scheduler, diary/blog appliance, muscles atlas, encyclopedia of exercises, supplements base, incoming feedback from trainees (in any format). Existing solutions combine only several of these instruments and has to be combined or augmented with other services. Expanding amount of trainees causes explicit mess in data and management.
+3. Personal promotion. Mostly social networks, various types of direct advertising and word-of-mouth. The call to measure the effectiveness of the means applied forces to deep dive into specific advertising campaign management details for each social network, which increases the personal investments or narrows the scope. Participation in events requires constant involvement in public-sports activity, information and schedules on those are spreaded across various sources.
+
 ## Use Cases: (@IggyPob)
 # Trainer Perspective:
-* As a Trainer I have an access to the Exercise Library (can enumerate the library/favorite smth/add custom tags)
-* As a Trainer I can combine Exercises from library into an Exercise Set
-** Whereas Exercise Set contains number of Sets, Repetitions, Pause Duration, Weights
-* As a Trainer I can assign an Exercise Set to a Client (for a given date)
+1. As a Trainer I have an access to the Exercise Library (can enumerate the library/favorite smth/add custom tags)
+2. As a Trainer I can combine Exercises from library into an Exercise Set (Exercise Set contains number of Sets, Repetitions, Pause Duration, Weights)
+3. As a Trainer I can assign previously created/factory Exercise Set to one of my Clients (for a given date)
+- Repeatability: 100%
+- Scope of applicability: 100% of Trainers
+- Related Use Case: line #18
 # Client Perspective:
-* As a Client I can see Exercise Sets assigned to me by (a number of) Trainer(s)
-* As a Client I can Execute the Exercise Set, Save Results and Submit Results to Trainer
-* As a Client I have an access to the Exercise Library (can enumerate the library/favorite smth/add custom tags)
-* As a Client I can combine Exercises from library into an Exercise Set
-** Whereas Exercise Set contains number of Sets, Repetitions, Pause Duration, Weights
+1. As a Client I can see Exercise Sets assigned to me by (a number of) Trainer(s)
+2. As a Client I can Execute the Exercise Set, Save Results and Submit Results to Trainer
+3. As a Client I have an access to the Exercise Library (can enumerate the library/favorite smth/add custom tags)
+4. As a Client I can combine Exercises from library into an Exercise Set (Whereas Exercise Set contains number of Sets, Repetitions, Pause Duration, Weights)
 # Functional/Domain Model Perspective:
 * 
 
