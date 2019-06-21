@@ -6,9 +6,6 @@
     "version" : "0.0.1"
   },
   "servers" : [ {
-    "url" : "https://virtserver.swaggerhub.com/totus/ufit/0.0.1",
-    "description" : "SwaggerHub API Auto Mocking"
-  },{
     "url" : "https://ufit-api-server.herokuapp.com/{version}",
     "description" : "Heroku",
     "variables": {
