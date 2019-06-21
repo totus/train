@@ -1,0 +1,79 @@
+openapi: 3.0.0
+info:
+  title: Fitness Coaching Marketplace
+  version: 0.0.1
+servers:
+- description: SwaggerHub API Auto Mocking
+  url: https://virtserver.swaggerhub.com/totus/ufit/0.0.1
+paths:
+  /library/exercise/{tags}:
+    get:
+      operationId: find_exercises_by_tags
+      parameters:
+      - explode: false
+        in: path
+        name: tags
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Exercise'
+          description: successful operation
+        400:
+          description: Invalid tag value
+      security:
+      - library_auth:
+        - write:exercise
+        - read:exercise
+      summary: Finds exercise by custom tag
+      tags:
+      - lookup
+      x-openapi-router-controller: openapi_server.controllers.lookup_controller
+components:
+  schemas:
+    User:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+      type: object
+    Exercise:
+      example:
+        name: name
+        id: 0
+        steps:
+        - name: name
+          description: description
+          id: 6
+        - name: name
+          description: description
+          id: 6
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        steps:
+          items:
+            $ref: '#/components/schemas/BasicAction'
+          type: array
+      type: object
+    BasicAction:
+      example:
+        name: name
+        description: description
+        id: 6
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+      type: object
