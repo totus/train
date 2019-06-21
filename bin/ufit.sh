@@ -7,6 +7,10 @@ openapi_generator_install() {
     mvn clean install
 }
 
+openapi_generator_flask_server() {
+    java -jar bin/openapi-generator-cli.jar generate -i swagger.json -g python-flask -o ufit_api_flask
+}
+
 if [ "$1" == "openapi" ]; then
     shift
     if [ "$1" == "generator" ]; then
@@ -15,8 +19,8 @@ if [ "$1" == "openapi" ]; then
 	    openapi_generator_install
     	elif [ "$1" == "js-client" ]; then
             echo js-client
-    	elif [ "$1" == "flask-server" ]; then
-	    echo js-server
+    	elif [ "$1" == "flask" ]; then
+	    openapi_generator_flask_server
 	fi
     fi
 # attach to container to ebable debugging
