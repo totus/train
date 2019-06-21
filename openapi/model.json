@@ -39,10 +39,7 @@
           "400" : {
             "description" : "Invalid tag value"
           }
-        },
-        "security" : [ {
-          "library_auth" : [ "write:action_set", "read:action_set" ]
-        } ]
+        }
       }
     }
   },

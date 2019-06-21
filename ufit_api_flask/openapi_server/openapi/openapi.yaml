@@ -22,20 +22,32 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Exercise'
+                $ref: '#/components/schemas/ActionSet'
           description: successful operation
         400:
           description: Invalid tag value
-      security:
-      - library_auth:
-        - write:exercise
-        - read:exercise
       summary: Finds exercise by custom tag
       tags:
       - lookup
       x-openapi-router-controller: openapi_server.controllers.lookup_controller
 components:
   schemas:
+    ActionResultType:
+      enum:
+      - success
+      - failure
+      - not_attempted
+      type: string
+    Gender:
+      enum:
+      - male
+      - female
+      - other
+      type: string
+    Age:
+      maximum: 200
+      minimum: 0
+      type: integer
     User:
       properties:
         id:
@@ -44,6 +56,16 @@ components:
           type: string
       type: object
     Exercise:
+      properties:
+        actions:
+          $ref: '#/components/schemas/ActionSet'
+        goals:
+          items:
+            $ref: '#/components/schemas/ProgressItem'
+          minItems: 1
+          type: array
+      type: object
+    ActionSet:
       example:
         name: name
         id: 0
@@ -61,10 +83,11 @@ components:
           type: string
         steps:
           items:
-            $ref: '#/components/schemas/BasicAction'
+            $ref: '#/components/schemas/Action'
+          minItems: 1
           type: array
       type: object
-    BasicAction:
+    Action:
       example:
         name: name
         description: description
@@ -75,5 +98,41 @@ components:
         name:
           type: string
         description:
+          type: string
+      type: object
+    ActionResult:
+      properties:
+        result:
+          $ref: '#/components/schemas/ActionResultType'
+        progress:
+          items:
+            $ref: '#/components/schemas/ProgressItem'
+          minItems: 1
+          type: array
+          uniqueItems: true
+      type: object
+    State:
+      properties:
+        quality:
+          nullable: false
+          type: string
+        quantity:
+          nullable: true
+          type: integer
+      type: object
+    ProgressItem:
+      properties:
+        delta:
+          type: number
+        measurement:
+          $ref: '#/components/schemas/KPI'
+      type: object
+    KPI:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        meaning:
           type: string
       type: object

@@ -8,7 +8,7 @@ openapi_generator_install() {
 }
 
 openapi_generator_flask_server() {
-    java -jar bin/openapi-generator-cli.jar generate -i swagger.json -g python-flask -o ufit_api_flask
+    java -jar bin/openapi-generator-cli.jar generate -i openapi/model.json -g python-flask -o ufit_api_flask
 }
 
 if [ "$1" == "openapi" ]; then
