@@ -5,6 +5,12 @@ info:
 servers:
 - description: SwaggerHub API Auto Mocking
   url: https://virtserver.swaggerhub.com/totus/ufit/0.0.1
+- description: Heroku
+  url: https://ufit-api-server.herokuapp.com/{version}
+  variables:
+    version:
+      default: v1
+      description: API version
 paths:
   /library/exercise/{tags}:
     get:
