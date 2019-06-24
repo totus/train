@@ -6,8 +6,14 @@
     "version" : "0.0.1"
   },
   "servers" : [ {
-    "url" : "https://virtserver.swaggerhub.com/totus/ufit/0.0.1",
-    "description" : "SwaggerHub API Auto Mocking"
+    "url" : "https://ufit-api-server.herokuapp.com/{version}",
+    "description" : "Heroku",
+    "variables": {
+      "version": { 
+        "default": "v1",
+        "description": "API version"
+      }
+    }
   } ],
   "paths" : {
     "/library/exercise/{tags}" : {
@@ -39,10 +45,7 @@
           "400" : {
             "description" : "Invalid tag value"
           }
-        },
-        "security" : [ {
-          "library_auth" : [ "write:action_set", "read:action_set" ]
-        } ]
+        }
       }
     }
   },
